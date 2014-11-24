@@ -41,7 +41,7 @@ def my_abc(x):
 
 1. 切片 L[0:3]
 2. 迭代
-3. generator 生成器 有点难理解 【待看】
+3. generator 生成器 有点难理解 **【待看】**
 
 
 ####函数式编程
@@ -144,11 +144,53 @@ __author__ = 'Michael Liao'
 
 ####使用@property
 
+有没有既能检查参数，又可以用类似属性这样简单的方式来访问类的变量呢？对于追求完美的Python程序员来说，这是必须要做到的！
+
+还记得装饰器（decorator）可以给函数动态加上功能吗？对于类的方法，装饰器一样起作用。Python内置的@property装饰器就是负责把一个方法变成属性调用的：
+
+	class Student(object):
+
+    @property
+    def birth(self):
+        return self._birth
+
+    @birth.setter
+    def birth(self, value):
+        self._birth = value
+
+    @property
+    def age(self):
+        return 2014 - self._birth
 
 
+#####多重继承
+继承是面向对象编程的一个重要的方式，因为通过继承，子类就可以扩展父类的功能。
 
+	class Runnable(object):
+   		def run(self):
+      	  print('Running...')
 
+	class Flyable(object):
+  	 	def fly(self):
+       	  print('Flying...')
+	class Dog(Mammal, Runnable):
+  	  pass
+  	  
+###### MIXIN 混入
 
+	class Dog(Mammal, RunnableMixin, CarnivorousMixin):
+  	  pass
+
+	class Runnable(object):
+    	def run(self):
+        	print('Running...')
+
+	class Flyable(object):
+    	def fly(self):
+        	print('Flying...')
+        	
+        	
+        	
 
 
 
