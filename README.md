@@ -190,7 +190,92 @@ __author__ = 'Michael Liao'
         	print('Flying...')
         	
         	
-        	
+#### 定制类
+__getattr__
+
+	class Student(object):
+
+   		def __init__(self):
+        self.name = 'Michael'   
+        
+调用name属性，没问题，但是，调用不存在的score属性，就有问题了：
+
+
+#### 使用元类 后续学习
+
+#### 错误处理、调试、单元测试 【暂过】
+使用try...except捕获错误还有一个巨大的好处，就是可以跨越多层调用，比如函数main()调用foo()，foo()调用bar()，结果bar()出错了，这时，只要main()捕获到了，就可以处理：
+
+	try...except...finally...
+	
+	def foo(s):
+	    return 10 / int(s)
+	
+	def bar(s):
+	    return foo(s) * 2
+	
+	def main():
+	    try:
+	        bar('0')
+	    except StandardError, e:
+	        print 'Error!'
+	    finally:
+	        print 'finally...'
+	        
+     	
+也就是说，不需要在每个可能出错的地方去捕获错误，只要在合适的层次去捕获错误就可以了。这样一来，就大大减少了写try...except...finally的麻烦。
+
+
+#### 操作文件和目录
+	import os
+
+
+#### 进程和线程 暂缓
+
+#### 常用内建模块
+
+namedtuple
+namedtuple('名称', [属性list]):
+
+	 from collections import namedtuple
+	 Point = namedtuple('Point', ['x', 'y'])
+	 p = Point(1, 2)
+	 p.x
+	 1
+	 p.y
+	 2
+
+deque 
+使用list存储数据时，按索引访问元素很快，但是插入和删除元素就很慢了，因为list是线性存储，数据量大的时候，插入和删除效率很低。
+
+deque是为了高效实现插入和删除操作的双向列表，适合用于队列和栈：
+
+	from collections import deque	
+	
+base64 
+
+
+摘要算法之所以能指出数据是否被篡改过，就是因为摘要函数是一个单向函数，计算f(data)很容易，但通过digest反推data却非常困难。而且，对原始数据做一个bit的修改，都会导致计算出的摘要完全不同。
+
+	import hashlib
+	
+	md5 = hashlib.md5()
+	md5.update('how to use md5 in python hashlib?')
+	print md5.hexdigest()
+
+
+
+#### itertools
+
+Python的内建模块itertools提供了非常有用的用于操作迭代对象的函数。
+
+
+#### HTMLParser
+
+如果我们要编写一个搜索引擎，第一步是用爬虫把目标网站的页面抓下来，第二步就是解析该HTML页面，看看里面的内容到底是新闻、图片还是视频。
+
+## 接下来要学一个 第三方模块 requests
+
 
 
 
